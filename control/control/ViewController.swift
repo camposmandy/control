@@ -9,15 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    
 
     @IBOutlet weak var label: UIButton!
     
     @IBOutlet weak var button: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+        //Configurações da Navigation
+        navigationController?.navigationBarHidden = true
         
-        label.layer.cornerRadius = 75
+        label.layer.cornerRadius = 90
         label.layer.borderColor = UIColor.whiteColor().CGColor
         label.layer.backgroundColor = UIColor(red: 27/255, green: 188/255, blue: 155/255, alpha: 0.8).CGColor
         
@@ -26,7 +30,7 @@ class ViewController: UIViewController {
         label.layer.shadowOpacity = 3
         label.layer.masksToBounds = false
             
-        button.layer.cornerRadius = 75
+        button.layer.cornerRadius = 90
         button.layer.borderColor = UIColor.whiteColor().CGColor
         button.layer.backgroundColor = UIColor(red: 27/255, green: 188/255, blue: 155/255, alpha: 0.8).CGColor
         
@@ -34,6 +38,10 @@ class ViewController: UIViewController {
         button.layer.shadowOffset = CGSizeZero
         button.layer.shadowOpacity = 3
         button.layer.masksToBounds = false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
 
     override func didReceiveMemoryWarning() {

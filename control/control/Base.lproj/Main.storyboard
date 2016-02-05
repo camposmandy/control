@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="f9d-x1-3rh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="f9d-x1-3rh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,13 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofi-1R-EBg">
-                                <rect key="frame" x="225" y="120" width="150" height="150"/>
+                                <rect key="frame" x="210" y="120" width="180" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="BNT-XH-1nD"/>
-                                    <constraint firstAttribute="height" constant="150" id="CDb-IC-QAW"/>
+                                    <constraint firstAttribute="height" constant="180" id="CDb-IC-QAW"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="105" id="gIi-cW-f0q"/>
-                                    <constraint firstAttribute="width" constant="150" id="jTU-L0-uUx"/>
+                                    <constraint firstAttribute="width" constant="180" id="jTU-L0-uUx"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
                                 <state key="normal" title="Orçamento fixo">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -40,11 +41,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRc-hu-lcB">
-                                <rect key="frame" x="225" y="330" width="150" height="150"/>
+                                <rect key="frame" x="210" y="360" width="180" height="180"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="DNK-fx-RFe"/>
-                                    <constraint firstAttribute="height" constant="150" id="ntd-b2-3Cd"/>
+                                    <constraint firstAttribute="width" constant="180" id="DNK-fx-RFe"/>
+                                    <constraint firstAttribute="height" constant="180" id="ntd-b2-3Cd"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
                                 <state key="normal" title="Orçamento ilimitado">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -86,7 +88,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hIv-QK-vuj" id="Oj0-aJ-zkZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -213,7 +215,6 @@
         <!--Limitar gastos-->
         <scene sceneID="Bil-wb-5cb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iS9-fg-ne2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c3p-eA-aeB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Limitar gastos" id="ZaV-g7-fyr"/>
                     <toolbarItems/>
@@ -227,6 +228,7 @@
                         <segue destination="p4B-pZ-B6z" kind="relationship" relationship="rootViewController" id="H9S-u1-1PM"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iS9-fg-ne2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1394" y="736"/>
         </scene>
