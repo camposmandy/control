@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3733F9D61C70DE2600E03CE6 /* PrecoFixoDetalhesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3733F9D51C70DE2600E03CE6 /* PrecoFixoDetalhesTableViewCell.swift */; };
 		37E08BDF1C63BBD500369E84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E08BDE1C63BBD500369E84 /* AppDelegate.swift */; };
 		37E08BE11C63BBD500369E84 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E08BE01C63BBD500369E84 /* ViewController.swift */; };
 		37E08BE41C63BBD500369E84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37E08BE21C63BBD500369E84 /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		37E08BE91C63BBD500369E84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37E08BE71C63BBD500369E84 /* LaunchScreen.storyboard */; };
 		37E08BF41C63BBD500369E84 /* controlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E08BF31C63BBD500369E84 /* controlTests.swift */; };
 		37E08BFF1C63BBD500369E84 /* controlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E08BFE1C63BBD500369E84 /* controlUITests.swift */; };
+		37E08C0D1C652C3500369E84 /* PrecoFixoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E08C0C1C652C3500369E84 /* PrecoFixoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3733F9D51C70DE2600E03CE6 /* PrecoFixoDetalhesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrecoFixoDetalhesTableViewCell.swift; sourceTree = "<group>"; };
 		37E08BDB1C63BBD500369E84 /* control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = control.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E08BDE1C63BBD500369E84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37E08BE01C63BBD500369E84 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 		37E08BFA1C63BBD500369E84 /* controlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = controlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E08BFE1C63BBD500369E84 /* controlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = controlUITests.swift; sourceTree = "<group>"; };
 		37E08C001C63BBD500369E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37E08C0C1C652C3500369E84 /* PrecoFixoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrecoFixoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3733F9D41C70DE0200E03CE6 /* celulas */ = {
+			isa = PBXGroup;
+			children = (
+				3733F9D51C70DE2600E03CE6 /* PrecoFixoDetalhesTableViewCell.swift */,
+			);
+			name = celulas;
+			sourceTree = "<group>";
+		};
 		37E08BD21C63BBD500369E84 = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +109,10 @@
 		37E08BDD1C63BBD500369E84 /* control */ = {
 			isa = PBXGroup;
 			children = (
+				3733F9D41C70DE0200E03CE6 /* celulas */,
 				37E08BDE1C63BBD500369E84 /* AppDelegate.swift */,
 				37E08BE01C63BBD500369E84 /* ViewController.swift */,
+				37E08C0C1C652C3500369E84 /* PrecoFixoTableViewController.swift */,
 				37E08BE21C63BBD500369E84 /* Main.storyboard */,
 				37E08BE51C63BBD500369E84 /* Assets.xcassets */,
 				37E08BE71C63BBD500369E84 /* LaunchScreen.storyboard */,
@@ -258,6 +272,8 @@
 			files = (
 				37E08BE11C63BBD500369E84 /* ViewController.swift in Sources */,
 				37E08BDF1C63BBD500369E84 /* AppDelegate.swift in Sources */,
+				37E08C0D1C652C3500369E84 /* PrecoFixoTableViewController.swift in Sources */,
+				3733F9D61C70DE2600E03CE6 /* PrecoFixoDetalhesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
