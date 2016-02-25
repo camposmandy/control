@@ -63,16 +63,7 @@ class AdicionarDespesaTableViewController: UIViewController, UITableViewDelegate
         }
         tableView.reloadData()
     }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        
-        let digitado = textField.text
-        let digitadoMinusculo = digitado?.lowercaseString
-        print(digitadoMinusculo)
-      //  sing.modoPrepArray.append(digitadoMinusculo!)
-        textField.enabled = false
-        //print(sing.modoPrepArray)
-    }
+
 
     @IBAction func adicionarCelula(sender: AnyObject) {
         
