@@ -16,8 +16,6 @@
 		37E08BF41C63BBD500369E84 /* controlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E08BF31C63BBD500369E84 /* controlTests.swift */; };
 		37E08BFF1C63BBD500369E84 /* controlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E08BFE1C63BBD500369E84 /* controlUITests.swift */; };
 		37E08C0D1C652C3500369E84 /* PrecoFixoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E08C0C1C652C3500369E84 /* PrecoFixoTableViewController.swift */; };
-		4B4B58CE1C7F98A60004AC85 /* AdicionarDespesaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B58CC1C7F98A60004AC85 /* AdicionarDespesaTableViewCell.swift */; };
-		4B4B58CF1C7F98A60004AC85 /* AdicionarDespesaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B58CD1C7F98A60004AC85 /* AdicionarDespesaTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +51,6 @@
 		37E08BFE1C63BBD500369E84 /* controlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = controlUITests.swift; sourceTree = "<group>"; };
 		37E08C001C63BBD500369E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37E08C0C1C652C3500369E84 /* PrecoFixoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrecoFixoTableViewController.swift; sourceTree = "<group>"; };
-		4B4B58CC1C7F98A60004AC85 /* AdicionarDespesaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdicionarDespesaTableViewCell.swift; sourceTree = "<group>"; };
-		4B4B58CD1C7F98A60004AC85 /* AdicionarDespesaTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdicionarDespesaTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +113,6 @@
 				37E08BDE1C63BBD500369E84 /* AppDelegate.swift */,
 				37E08BE01C63BBD500369E84 /* ViewController.swift */,
 				37E08C0C1C652C3500369E84 /* PrecoFixoTableViewController.swift */,
-				4B4B58CC1C7F98A60004AC85 /* AdicionarDespesaTableViewCell.swift */,
-				4B4B58CD1C7F98A60004AC85 /* AdicionarDespesaTableViewController.swift */,
 				37E08BE21C63BBD500369E84 /* Main.storyboard */,
 				37E08BE51C63BBD500369E84 /* Assets.xcassets */,
 				37E08BE71C63BBD500369E84 /* LaunchScreen.storyboard */,
@@ -280,8 +274,6 @@
 				37E08BDF1C63BBD500369E84 /* AppDelegate.swift in Sources */,
 				37E08C0D1C652C3500369E84 /* PrecoFixoTableViewController.swift in Sources */,
 				3733F9D61C70DE2600E03CE6 /* PrecoFixoDetalhesTableViewCell.swift in Sources */,
-				4B4B58CF1C7F98A60004AC85 /* AdicionarDespesaTableViewController.swift in Sources */,
-				4B4B58CE1C7F98A60004AC85 /* AdicionarDespesaTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,9 +8,11 @@
 
 import UIKit
 
-class PrecoFixoTableViewController: UITableViewController {
+class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tb: UITableView!
     var arrayItens: Array<String> = []
+    var arrayValores: Array<String> = []
     @IBOutlet weak var precoEscolhido: UILabel!
     
     @IBAction func adicionarItem(sender: AnyObject) {
@@ -41,11 +43,13 @@ class PrecoFixoTableViewController: UITableViewController {
             print(descricaoTxtField.text)
             
             self.arrayItens.append(descricaoTxtField.text!)
+            self.arrayValores.append(precoTxtField.text!)
             
             print(self.arrayItens)
+            print(self.arrayValores)
             
             self.navigationController?.popToViewController(self, animated: true)
-            self.tableView.reloadData()
+            self.tb.reloadData()
         })
         
         alertaNovoItem.addAction(cancelar)
@@ -87,21 +91,22 @@ class PrecoFixoTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return self.arrayItens.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: PrecoFixoDetalhesTableViewCell = tableView.dequeueReusableCellWithIdentifier("celula", forIndexPath: indexPath) as! PrecoFixoDetalhesTableViewCell
 
         cell.descricaoLabel.text = self.arrayItens[indexPath.row]
+        cell.precoLabel.text = self.arrayValores[indexPath.row]
         
         return cell
     }
