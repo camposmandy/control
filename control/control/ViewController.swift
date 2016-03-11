@@ -12,32 +12,33 @@ class ViewController: UIViewController {
     
     
 
-    @IBOutlet weak var label: UIButton!
+    @IBOutlet weak var buttonLimitado: UIButton!
+    @IBOutlet weak var buttonIlimitado: UIButton!
     
-    @IBOutlet weak var button: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
     
         //Configurações da Navigation
         navigationController?.navigationBarHidden = true
         
-        label.layer.cornerRadius = 90
-        label.layer.borderColor = UIColor.whiteColor().CGColor
-        label.layer.backgroundColor = UIColor(red: 27/255, green: 188/255, blue: 155/255, alpha: 0.8).CGColor
+        //design dos botões iniciais
+        buttonLimitado.layer.cornerRadius = 90
+        buttonLimitado.layer.borderColor = UIColor.whiteColor().CGColor
+        buttonLimitado.layer.backgroundColor = UIColor(red: 27/255, green: 188/255, blue: 155/255, alpha: 0.8).CGColor
         
-        label.layer.shadowColor = UIColor.blackColor().CGColor
-        label.layer.shadowOffset = CGSizeZero
-        label.layer.shadowOpacity = 3
-        label.layer.masksToBounds = false
+        buttonLimitado.layer.shadowColor = UIColor.blackColor().CGColor
+        buttonLimitado.layer.shadowOffset = CGSizeZero
+        buttonLimitado.layer.shadowOpacity = 3
+        buttonLimitado.layer.masksToBounds = false
             
-        button.layer.cornerRadius = 90
-        button.layer.borderColor = UIColor.whiteColor().CGColor
-        button.layer.backgroundColor = UIColor(red: 27/255, green: 188/255, blue: 155/255, alpha: 0.8).CGColor
+        buttonIlimitado.layer.cornerRadius = 90
+        buttonIlimitado.layer.borderColor = UIColor.whiteColor().CGColor
+        buttonIlimitado.layer.backgroundColor = UIColor(red: 27/255, green: 188/255, blue: 155/255, alpha: 0.8).CGColor
         
-        button.layer.shadowColor = UIColor.blackColor().CGColor
-        button.layer.shadowOffset = CGSizeZero
-        button.layer.shadowOpacity = 3
-        button.layer.masksToBounds = false
+        buttonIlimitado.layer.shadowColor = UIColor.blackColor().CGColor
+        buttonIlimitado.layer.shadowOffset = CGSizeZero
+        buttonIlimitado.layer.shadowOpacity = 3
+        buttonIlimitado.layer.masksToBounds = false
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -48,7 +49,5 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
