@@ -9,9 +9,11 @@
 import UIKit
 
 class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
-
+    
+    var precoFake = String()
     var arrayItens: Array<String> = []
     var arrayValores: Array<String> = []
+    var arrayValoresInicial: Array<String> = []
 
     @IBOutlet weak var nomeDaComanda: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -52,11 +54,10 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
             
             self.arrayItens.append(descricaoTxtField.text!)
             self.arrayValores.append(precoTxtField.text!)
-            
-            print(self.arrayItens)
-            print(self.arrayValores)
+            self.arrayValoresInicial.append(precoTxtField.text!)
             
             self.navigationController?.popToViewController(self, animated: true)
+            
             self.tableView.reloadData()
         })
         
@@ -74,8 +75,8 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
 
         navigationController?.navigationBarHidden = false
         
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurView = UIVisualEffectView(effect: darkBlur)
+//        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+//        let blurView = UIVisualEffectView(effect: darkBlur)
         
  //       blurView.frame = viewBackGroudLimite.bounds
    //     viewBackGroudLimite.addSubview(blurView)
@@ -122,12 +123,10 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
         cell.descricaoLabel.text = self.arrayItens[indexPath.row]
         cell.precoLabel.text = self.arrayValores[indexPath.row]
         
-        print("array reload ", self.arrayValores)
         decrementar()
         
         return cell
     }
-
 
     //alterar limite
     func valorDoLimite(){
@@ -160,7 +159,10 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
                 self.buttonFinalizarItem.enabled = true
                 self.buttonAddItem.enabled = true
                 
+                self.precoFake = limiteTxtField.text!
                 self.precoEscolhido.text = limiteTxtField.text
+                
+                self.decrementar()
             }
             
             self.navigationController?.popToViewController(self, animated: true)
@@ -177,15 +179,20 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
         let maisUm = UITableViewRowAction(style: .Normal, title: "+1") { (action, index) -> Void in
             tableView.editing = false
             
-            let v = self.arrayValores.map{Float($0) ?? 0}
+            let v = self.arrayValoresInicial.map{Float($0) ?? 0}
+            let k = self.arrayValores.map{Float($0) ?? 0}
+            
             var x = v[indexPath.row]
-            x += x
+            let j = x/k[indexPath.row]
+            
+            if v[indexPath.row] != j * v[indexPath.row]{
+            x = (x + k[indexPath.row])
+            } else {
+                x += x
+            }
             
             self.arrayValores.insert("\(x)", atIndex: index.row)
             self.arrayValores.removeAtIndex(index.row + 1)
-            
-            print("array edit ", self.arrayValores)
-//            self.decrementar()
             
             self.tableView.reloadData()
         }
@@ -196,22 +203,18 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
     }
     
     func decrementar(){
-       var a = Int(precoEscolhido.text!)
-        print("inicial", a)
+        var a = Float(self.precoFake)!
         
-        for index in arrayValores{
-        var b = self.arrayValores.map{Int($0) ?? 0}
-        let y = b[arrayValores.indexOf(index)!]
-            
-            print(index)
-            print(y)
-            
-            a = a! - y
-            
-            print("Final ", a)
+        var b = self.arrayValores.map{Float($0) ?? 0}
+        
+        for j in arrayValores{
+            let c = b[arrayValores.indexOf(j)!]
+            a = a - c
         }
+        precoEscolhido.text = "\(a)"
     }
-    
+
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
