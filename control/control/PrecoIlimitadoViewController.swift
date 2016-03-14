@@ -51,7 +51,12 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
         
         cell.nomeItemIlimitado.text = arrayNomeItem[indexPath.row]
         cell.precoItemIlimitado.text = arrayValores[indexPath.row]
+        
         incrementar()
+        
+        if totalDaComanda.text != "R$"{
+            finalizarCompras.enabled = true
+        }
         
         return cell
     }
