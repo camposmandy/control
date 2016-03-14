@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="f9d-x1-3rh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="f9d-x1-3rh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -425,10 +425,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="descricaoLabel" destination="kfO-dK-Q4E" id="FLo-JB-uOg"/>
                                             <outlet property="nomeItemIlimitado" destination="kfO-dK-Q4E" id="0lK-YG-LGh"/>
-                                            <outlet property="precoItemIlimitado" destination="Rqe-4i-fuU" id="E5T-XN-pq1"/>
-                                            <outlet property="precoLabel" destination="Rqe-4i-fuU" id="r8C-tj-48I"/>
+                                            <outlet property="precoItemIlimitado" destination="Rqe-4i-fuU" id="oZv-4I-WHP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -487,10 +485,16 @@
                                 <items>
                                     <barButtonItem title="Adicionar Item" id="DIu-wp-cjT">
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="adcItem:" destination="MLG-tT-MsK" id="uGh-8J-6Ni"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="69C-Wu-7jn"/>
                                     <barButtonItem title="Finalizar Lista" id="Lpx-I4-eAO">
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="finalizarComanda:" destination="MLG-tT-MsK" id="57y-aM-Yi4"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -525,7 +529,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Orçamento Ilimitado" id="v8w-hl-aAM"/>
                     <connections>
-                        <outlet property="finalizarCompras" destination="B9h-Xn-Gei" id="Cw6-nR-cYT"/>
+                        <outlet property="finalizarCompras" destination="Lpx-I4-eAO" id="hrj-Zb-KOg"/>
                         <outlet property="tableView" destination="O6j-D6-wNl" id="j0S-Nh-XL0"/>
                         <outlet property="totalDaComanda" destination="6hm-vE-sDx" id="Taf-uN-VWq"/>
                     </connections>

@@ -11,6 +11,7 @@ import UIKit
 class PrecoIlimitadoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nomeItemIlimitado: UILabel!
+    
     @IBOutlet weak var precoItemIlimitado: UILabel!
     
     override func awakeFromNib() {

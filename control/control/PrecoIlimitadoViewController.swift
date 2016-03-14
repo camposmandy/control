@@ -9,31 +9,30 @@
 import UIKit
 
 class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     let mm = ModeloMetodos()
-
+    
     var arrayValores: Array<String> = []
     var arrayNomeItem: Array<String> = []
     var arrayValorInicial: Array<String> = []
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var finalizarCompras: UIToolbar!
     @IBOutlet weak var totalDaComanda: UILabel!
+    @IBOutlet weak var finalizarCompras: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBarHidden = false
-        //botão adc item e finalizar lista hidden
-        finalizarCompras.hidden = true
+        finalizarCompras.enabled = false
         
         mm.designBotao(totalDaComanda)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+    self.tabBarController?.tabBar.hidden = true
+    }
 
-    override func viewWillAppear(animated: Bool) { self.tabBarController?.tabBar.hidden = true }
-    
-    override func viewWillDisappear(animated: Bool) { self.tabBarController?.tabBar.hidden = false }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -52,7 +51,8 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
         
         cell.nomeItemIlimitado.text = arrayNomeItem[indexPath.row]
         cell.precoItemIlimitado.text = arrayValores[indexPath.row]
-            
+        incrementar()
+        
         return cell
     }
     
@@ -128,16 +128,29 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     
     @IBAction func finalizarComanda(sender: AnyObject) { mm.finalizarLista(navigationController!, view: self) }
     
+    func incrementar(){
+        var f = Float()
+        var b = self.arrayValores.map{Float($0) ?? 0}
+        
+        for index in arrayValores{
+            let c=b[arrayValores.indexOf(index)!]
+            f = c+f
+            
+        }
+        
+        totalDaComanda.text = "\(f)"
+    }
     
-
+    
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
