@@ -19,6 +19,12 @@
 		37E08BE91C63BBD500369E84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37E08BE71C63BBD500369E84 /* LaunchScreen.storyboard */; };
 		37E08BF41C63BBD500369E84 /* controlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E08BF31C63BBD500369E84 /* controlTests.swift */; };
 		37E08BFF1C63BBD500369E84 /* controlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E08BFE1C63BBD500369E84 /* controlUITests.swift */; };
+		4BC093351C9733440038B66E /* ControlPersistencia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BC093331C9733440038B66E /* ControlPersistencia.xcdatamodeld */; };
+		4BC0933B1C97375F0038B66E /* ListaDeCompras+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC093371C97375F0038B66E /* ListaDeCompras+CoreDataProperties.swift */; };
+		4BC0933C1C97375F0038B66E /* ListaDeCompras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC093381C97375F0038B66E /* ListaDeCompras.swift */; };
+		4BC0933D1C97375F0038B66E /* Produtos+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC093391C97375F0038B66E /* Produtos+CoreDataProperties.swift */; };
+		4BC0933E1C97375F0038B66E /* Produtos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0933A1C97375F0038B66E /* Produtos.swift */; };
+		4BC093401C9738290038B66E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0933F1C9738290038B66E /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,12 @@
 		37E08BFA1C63BBD500369E84 /* controlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = controlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E08BFE1C63BBD500369E84 /* controlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = controlUITests.swift; sourceTree = "<group>"; };
 		37E08C001C63BBD500369E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BC093341C9733440038B66E /* ControlPersistencia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ControlPersistencia.xcdatamodel; sourceTree = "<group>"; };
+		4BC093371C97375F0038B66E /* ListaDeCompras+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ListaDeCompras+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4BC093381C97375F0038B66E /* ListaDeCompras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaDeCompras.swift; sourceTree = "<group>"; };
+		4BC093391C97375F0038B66E /* Produtos+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Produtos+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4BC0933A1C97375F0038B66E /* Produtos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Produtos.swift; sourceTree = "<group>"; };
+		4BC0933F1C9738290038B66E /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +128,7 @@
 		37E08BDD1C63BBD500369E84 /* control */ = {
 			isa = PBXGroup;
 			children = (
+				4BC093361C9733690038B66E /* Persistencia */,
 				3733F9D41C70DE0200E03CE6 /* celulas */,
 				37E08BDE1C63BBD500369E84 /* AppDelegate.swift */,
 				3773614C1C973F7D007236BF /* ViewInicialTableViewController.swift */,
@@ -146,6 +159,19 @@
 				37E08C001C63BBD500369E84 /* Info.plist */,
 			);
 			path = controlUITests;
+			sourceTree = "<group>";
+		};
+		4BC093361C9733690038B66E /* Persistencia */ = {
+			isa = PBXGroup;
+			children = (
+				4BC093331C9733440038B66E /* ControlPersistencia.xcdatamodeld */,
+				4BC0933F1C9738290038B66E /* CoreDataManager.swift */,
+				4BC093371C97375F0038B66E /* ListaDeCompras+CoreDataProperties.swift */,
+				4BC093381C97375F0038B66E /* ListaDeCompras.swift */,
+				4BC093391C97375F0038B66E /* Produtos+CoreDataProperties.swift */,
+				4BC0933A1C97375F0038B66E /* Produtos.swift */,
+			);
+			name = Persistencia;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,12 +305,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BC0933D1C97375F0038B66E /* Produtos+CoreDataProperties.swift in Sources */,
+				4BC0933E1C97375F0038B66E /* Produtos.swift in Sources */,
 				37CB44791C93AE9200316803 /* PrecoIlimitadoTableViewCell.swift in Sources */,
 				3773614D1C973F7D007236BF /* ViewInicialTableViewController.swift in Sources */,
 				37E08BDF1C63BBD500369E84 /* AppDelegate.swift in Sources */,
+				4BC093401C9738290038B66E /* CoreDataManager.swift in Sources */,
 				37CB44771C93AE5400316803 /* PrecoIlimitadoViewController.swift in Sources */,
 				3733F9D61C70DE2600E03CE6 /* PrecoFixoDetalhesTableViewCell.swift in Sources */,
 				375874751C9725DD0055C166 /* PrecoFixoTableViewController.swift in Sources */,
+				4BC093351C9733440038B66E /* ControlPersistencia.xcdatamodeld in Sources */,
 				375874731C95D22A0055C166 /* ModeloMetodos.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +563,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4BC093331C9733440038B66E /* ControlPersistencia.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4BC093341C9733440038B66E /* ControlPersistencia.xcdatamodel */,
+			);
+			currentVersion = 4BC093341C9733440038B66E /* ControlPersistencia.xcdatamodel */;
+			path = ControlPersistencia.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 37E08BD31C63BBD500369E84 /* Project object */;
 }
