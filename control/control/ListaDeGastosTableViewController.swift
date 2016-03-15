@@ -1,5 +1,5 @@
 //
-//  ViewInicialTableViewController.swift
+//  ListaDeGastosTableViewController.swift
 //  control
 //
 //  Created by Amanda Campos on 14/03/16.
@@ -8,27 +8,15 @@
 
 import UIKit
 
-class ViewInicialTableViewController: UITableViewController {
+class ListaDeGastosTableViewController: UITableViewController {
 
-    @IBOutlet weak var labelInicial: UILabel!
-
+    var arrayLista: Array<String> = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBarHidden = false
 
-        //Configurações da Navigation
-        navigationController?.navigationBarHidden = true
-        navigationController!.navigationBar.tintColor = UIColor(red: 27/255, green: 188/255, blue: 155/255, alpha: 0.8)
-
-        //design dos botões iniciais
-        labelInicial.layer.cornerRadius = 230/2
-        labelInicial.layer.borderColor = UIColor.whiteColor().CGColor
-        labelInicial.layer.backgroundColor = UIColor(red: 27/255, green: 188/255, blue: 155/255, alpha: 0.8).CGColor
-        
-        labelInicial.layer.shadowColor = UIColor.blackColor().CGColor
-        labelInicial.layer.shadowOffset = CGSizeZero
-        labelInicial.layer.shadowOpacity = 3
-        labelInicial.layer.masksToBounds = false
-
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,35 +24,33 @@ class ViewInicialTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(animated)
-        navigationController?.navigationBarHidden = true
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController!.popToRootViewControllerAnimated(true)
+
     }
+
     // MARK: - Table view data source
 
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 2
-//    }
-//
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        if section == 1 {
-//            return 1
-//        } else {
-//            return 3
-//        }
-//    }
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
 
-    /*
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return arrayLista.count
+    }
+
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("celula", forIndexPath: indexPath) as! ListaDeGastosTableViewCell
 
-        // Configure the cell...
-
+        cell.nomeDaLista.text = arrayLista[indexPath.row]
+        
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.

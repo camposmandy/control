@@ -69,14 +69,14 @@ class ModeloMetodos: NSObject {
         view.presentViewController(alertaNovoItem, animated: true, completion: nil)
     }
     
-    func finalizarLista(navigation: UINavigationController, view: UIViewController){
+    func finalizarLista(navigation: UINavigationController, view: UIViewController, var arrayNomeLista: Array<String>){
         let alertaNovoLimite = UIAlertController(title: nil, message: "Digite um novo nome para sua comanda", preferredStyle: .Alert)
         var limiteTxtField = UITextField()
         
         alertaNovoLimite.addTextFieldWithConfigurationHandler { (textField) -> Void in
             limiteTxtField = textField
             textField.placeholder = "Nome da comanda"
-            textField.keyboardType = .DecimalPad
+            textField.keyboardType = .Default
         }
         
         alertaNovoLimite.view.layer.shadowColor = UIColor.blackColor().CGColor
@@ -87,13 +87,25 @@ class ModeloMetodos: NSObject {
         let salvar = UIAlertAction(title: "Salvar", style: .Default, handler: { (ACTION) -> Void in
             
             //salvar no coreData e redirecionar para a lista
+            arrayNomeLista.append(limiteTxtField.text!)
             
             navigation.popToViewController(view, animated: true)
+            
+            if limiteTxtField.text != "Nome da comanda"{
+                self.transferenciaDeDados(view, navigation: navigation, arrayNomeLista: arrayNomeLista)
+            }
         })
         
         alertaNovoLimite.addAction(cancelar)
         alertaNovoLimite.addAction(salvar)
         
         view.presentViewController(alertaNovoLimite, animated: true, completion: nil)
+    }
+    
+    func transferenciaDeDados(view: UIViewController, navigation: UINavigationController, arrayNomeLista: Array<String>){
+        //transferir dados dessa view para outra apos executar o AlertController
+        let secondViewController = view.storyboard!.instantiateViewControllerWithIdentifier("teste") as! ListaDeGastosTableViewController
+        secondViewController.arrayLista = arrayNomeLista
+        navigation.pushViewController(secondViewController, animated: true)
     }
 }

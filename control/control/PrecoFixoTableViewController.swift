@@ -16,6 +16,7 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
     var arrayItens: Array<String> = []
     var arrayValores: Array<String> = []
     var arrayValoresInicial: Array<String> = []
+    var arrayNomeLista: Array<String> = []
 
     @IBOutlet weak var nomeDaComanda: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -194,7 +195,7 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
         return [maisUm]
     }
     
-    @IBAction func finalizar(sender: AnyObject) { mm.finalizarLista(navigationController!, view: self) }
+    @IBAction func finalizar(sender: AnyObject) { mm.finalizarLista(navigationController!, view: self, arrayNomeLista: arrayNomeLista) }
     
     func decrementar(){
         var a = Float(self.precoFake)!

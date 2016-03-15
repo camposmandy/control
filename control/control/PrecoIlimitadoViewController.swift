@@ -15,6 +15,7 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     var arrayValores: Array<String> = []
     var arrayNomeItem: Array<String> = []
     var arrayValorInicial: Array<String> = []
+    var arrayNomeLista: Array<String> = []
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDaComanda: UILabel!
@@ -24,6 +25,7 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         
         navigationController?.navigationBarHidden = false
+        
         finalizarCompras.enabled = false
         
         mm.designBotao(totalDaComanda)
@@ -131,7 +133,9 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
         self.presentViewController(alertaNovoItem, animated: true, completion: nil)
     }
     
-    @IBAction func finalizarComanda(sender: AnyObject) { mm.finalizarLista(navigationController!, view: self) }
+    @IBAction func finalizarComanda(sender: AnyObject){
+       mm.finalizarLista(navigationController!, view: self, arrayNomeLista: arrayNomeLista)
+    }
     
     func incrementar(){
         var f = Float()
@@ -147,15 +151,11 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     
-    
-    /*
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        }
+//    }
     
 }
