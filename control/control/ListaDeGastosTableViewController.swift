@@ -11,6 +11,7 @@ import UIKit
 class ListaDeGastosTableViewController: UITableViewController {
 
     var arrayLista: Array<String> = []
+    var arrayProdutos: Array<Produtos>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +40,20 @@ class ListaDeGastosTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        for i in ProdutoManager.sharedInstance.buscarProdutos(){
+            arrayLista.append(i.nome!)
+        }
         return arrayLista.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("celula", forIndexPath: indexPath) as! ListaDeGastosTableViewCell
-
-        cell.nomeDaLista.text = arrayLista[indexPath.row]
+        
+        for i in ProdutoManager.sharedInstance.buscarProdutos(){
+            arrayLista.append(i.nome!)
+            cell.nomeDaLista.text = arrayLista[indexPath.row]
+        }
         
         return cell
     }

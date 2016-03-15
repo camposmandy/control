@@ -1,5 +1,5 @@
 //
-//  Produtos+CoreDataProperties.swift
+//  Lista+CoreDataProperties.swift
 //  control
 //
 //  Created by Mariana Medeiro on 15/03/16.
@@ -12,10 +12,11 @@
 import Foundation
 import CoreData
 
-extension Produtos {
+extension Lista {
 
-    @NSManaged var valor: NSNumber?
+    @NSManaged var limite: NSNumber?
+    @NSManaged var data: NSDate?
     @NSManaged var nome: String?
-    @NSManaged var lista: NSManagedObject?
+    @NSManaged var produtos: NSSet?
 
 }

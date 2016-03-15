@@ -87,6 +87,13 @@ class ModeloMetodos: NSObject {
         let salvar = UIAlertAction(title: "Salvar", style: .Default, handler: { (ACTION) -> Void in
             
             //salvar no coreData e redirecionar para a lista
+            var lista: Lista!
+            
+            lista = ListaManager.sharedInstance.novaLista()
+            lista.nome = limiteTxtField.text
+            lista.produtos = NSSet(array: ProdutoManager.sharedInstance.buscarProdutos())
+            ListaManager.sharedInstance.save()
+            
             arrayNomeLista.append(limiteTxtField.text!)
             
             navigation.popToViewController(view, animated: true)

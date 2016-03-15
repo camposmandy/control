@@ -1,5 +1,5 @@
 //
-//  Produtos.swift
+//  Lista.swift
 //  control
 //
 //  Created by Mariana Medeiro on 15/03/16.
@@ -10,7 +10,8 @@ import Foundation
 import CoreData
 
 
-class Produtos: NSManagedObject {
+class Lista: NSManagedObject {
 
+// Insert code here to add functionality to your managed object subclass
 
 }

@@ -17,6 +17,9 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     var arrayValorInicial: Array<String> = []
     var arrayNomeLista: Array<String> = []
     
+    var prod : Produtos!
+    
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDaComanda: UILabel!
     @IBOutlet weak var finalizarCompras: UIBarButtonItem!
@@ -118,6 +121,12 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
             print(formatarNumero)
             print(descricaoTxtField.text)
             
+            self.prod = ProdutoManager.sharedInstance.novoProduto()
+            self.prod.nome = descricaoTxtField.text
+            self.prod.valor = Double(precoTxtField.text!)
+            self.prod.lista = nil
+            ProdutoManager.sharedInstance.save()
+            
             self.arrayNomeItem.append(descricaoTxtField.text!)
             self.arrayValores.append(precoTxtField.text!)
             self.arrayValorInicial.append(precoTxtField.text!)
@@ -134,7 +143,7 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     @IBAction func finalizarComanda(sender: AnyObject){
-       mm.finalizarLista(navigationController!, view: self, arrayNomeLista: arrayNomeLista)
+        mm.finalizarLista(navigationController!, view: self, arrayNomeLista: arrayNomeLista)
     }
     
     func incrementar(){
