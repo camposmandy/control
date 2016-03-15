@@ -17,5 +17,17 @@ extension ListaDeCompras {
     @NSManaged var nomeLista: String?
     @NSManaged var dataCompra: NSDate?
     @NSManaged var possuiProduto: NSManagedObject?
+    
+    
+    func addProduto (produto: Produtos) {
+        let possuiProduto = self.mutableArrayValueForKey("possuiProduto")
+        possuiProduto.addObject(produto)
+    }
+    
+    
+    func deleteProduto (produto: Produtos) {
+        let possuiProduto = self.mutableArrayValueForKey("possuiProduto")
+        possuiProduto.removeObject(produto)
+    }
 
 }
