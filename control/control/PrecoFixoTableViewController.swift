@@ -10,8 +10,10 @@ import UIKit
 
 class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
+    var lista: Lista!
+    var produto: Produtos!
     var mm = ModeloMetodos()
-
+    
     var precoFake = String()
     var arrayItens: Array<String> = []
     var arrayValores: Array<String> = []
@@ -55,6 +57,18 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
             print(formatarNumero)
             print(descricaoTxtField.text)
             
+            self.lista = ListaManager.sharedInstance.novaLista()
+            self.lista.nome = "comanda"
+            self.lista.limite = Double(self.precoFake)
+            
+            self.produto = ProdutoManager.sharedInstance.novoProduto()
+            
+            self.produto.nome = descricaoTxtField.text
+            self.produto.valor = Double(precoTxtField.text!)
+            self.produto.lista = self.lista
+            
+            ProdutoManager.sharedInstance.save()
+            
             self.arrayItens.append(descricaoTxtField.text!)
             self.arrayValores.append(precoTxtField.text!)
             self.arrayValoresInicial.append(precoTxtField.text!)
@@ -77,26 +91,17 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
         super.viewDidLoad()
 
         navigationController?.navigationBarHidden = false
-        
-//        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-//        let blurView = UIVisualEffectView(effect: darkBlur)
-        
- //       blurView.frame = viewBackGroudLimite.bounds
-   //     viewBackGroudLimite.addSubview(blurView)
+        valorDoLimite()
         
         //botão adc item e finalizar lista hidden
         buttonFinalizarItem.enabled = false
         buttonAddItem.enabled = false
         
         mm.designBotao(precoEscolhido)
-        
     }
 
     //conf. tabBar
-    override func viewWillAppear(animated: Bool) {
-        self.tabBarController?.tabBar.hidden = true
-        valorDoLimite()
-    }
+    override func viewWillAppear(animated: Bool) { self.tabBarController?.tabBar.hidden = true }
     
     override func viewWillDisappear(animated: Bool) { self.tabBarController?.tabBar.hidden = false }
     
@@ -180,8 +185,10 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
             
             if v[indexPath.row] != j * v[indexPath.row]{
             x = (x + k[indexPath.row])
+            self.mm.salvarDemaisItens(indexPath, arrayNome: self.arrayItens, valor: x)
             } else {
                 x += x
+            self.mm.salvarDemaisItens(indexPath, arrayNome: self.arrayItens, valor: x)
             }
             
             self.arrayValores.insert("\(x)", atIndex: index.row)
@@ -195,7 +202,7 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
         return [maisUm]
     }
     
-    @IBAction func finalizar(sender: AnyObject) { mm.finalizarLista(navigationController!, view: self, arrayNomeLista: arrayNomeLista) }
+    @IBAction func finalizar(sender: AnyObject) { mm.finalizarLista(navigationController!, view: self, arrayNomeLista: arrayNomeLista, lista: self.lista, tipo: "limitado") }
     
     func decrementar(){
         var a = Float(self.precoFake)!
@@ -211,9 +218,8 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
     }
 
     // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-    }
+//     In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//    }
 }

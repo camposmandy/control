@@ -50,7 +50,7 @@ class ProdutoManager {
     func save(){
         do{
             try manegedContext.save()
-            print("Salvou")
+            print("Salvou Produto")
         }
         catch{
             print("Deu ruim")

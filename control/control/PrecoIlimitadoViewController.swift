@@ -11,13 +11,14 @@ import UIKit
 class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let mm = ModeloMetodos()
+    var lista : Lista!
     
     var arrayValores: Array<String> = []
     var arrayNomeItem: Array<String> = []
     var arrayValorInicial: Array<String> = []
     var arrayNomeLista: Array<String> = []
     
-    var prod : Produtos!
+    var produto : Produtos!
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -70,19 +71,26 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
         let maisUm = UITableViewRowAction(style: .Normal, title: "+1") { (action, index) -> Void in
             tableView.editing = false
             
-            let v = self.arrayValorInicial.map{Float($0) ?? 0}
+            let valorInicial = self.arrayValorInicial.map{Float($0) ?? 0}
             let k = self.arrayValores.map{Float($0) ?? 0}
             
-            var x = v[indexPath.row]
-            let j = x/k[indexPath.row]
+            var valorInicialINDEX = valorInicial[indexPath.row]
+            let j = valorInicialINDEX/k[indexPath.row]
             
-            if v[indexPath.row] != j * v[indexPath.row]{
-                x = (x + k[indexPath.row])
+            if valorInicial[indexPath.row] != j * valorInicial[indexPath.row]{
+                //demais incrementos
+                
+                valorInicialINDEX = (valorInicialINDEX + k[indexPath.row])
+                self.mm.salvarDemaisItens(indexPath, arrayNome: self.arrayNomeItem, valor: valorInicialINDEX)
+                
             } else {
-                x += x
+                //primeiro incremento
+                
+                valorInicialINDEX += valorInicialINDEX
+                self.mm.salvarDemaisItens(indexPath, arrayNome: self.arrayNomeItem, valor: valorInicialINDEX)
             }
             
-            self.arrayValores.insert("\(x)", atIndex: index.row)
+            self.arrayValores.insert("\(valorInicialINDEX)", atIndex: index.row)
             self.arrayValores.removeAtIndex(index.row + 1)
             
             self.tableView.reloadData()
@@ -121,10 +129,17 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
             print(formatarNumero)
             print(descricaoTxtField.text)
             
-            self.prod = ProdutoManager.sharedInstance.novoProduto()
-            self.prod.nome = descricaoTxtField.text
-            self.prod.valor = Double(precoTxtField.text!)
-            self.prod.lista = nil
+            //inicializa lista
+            self.lista = ListaManager.sharedInstance.novaLista()
+            self.lista.nome = "comanda"
+            
+            //salva apenas o primeiro produto
+            self.produto = ProdutoManager.sharedInstance.novoProduto()
+            
+            self.produto.nome = descricaoTxtField.text
+            self.produto.valor = Double(precoTxtField.text!)
+            self.produto.lista = self.lista
+            
             ProdutoManager.sharedInstance.save()
             
             self.arrayNomeItem.append(descricaoTxtField.text!)
@@ -143,7 +158,7 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     @IBAction func finalizarComanda(sender: AnyObject){
-        mm.finalizarLista(navigationController!, view: self, arrayNomeLista: arrayNomeLista)
+        mm.finalizarLista(navigationController!, view: self, arrayNomeLista: arrayNomeLista, lista: self.lista, tipo: "ilimitado")
     }
     
     func incrementar(){

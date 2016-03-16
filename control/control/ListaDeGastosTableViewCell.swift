@@ -11,6 +11,8 @@ import UIKit
 class ListaDeGastosTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nomeDaLista: UILabel!
+    @IBOutlet weak var totalDaLista: UILabel!
+    @IBOutlet weak var dataDaLista: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

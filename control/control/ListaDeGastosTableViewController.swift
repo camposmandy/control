@@ -9,99 +9,114 @@
 import UIKit
 
 class ListaDeGastosTableViewController: UITableViewController {
-
+    
     var arrayLista: Array<String> = []
-    var arrayProdutos: Array<Produtos>!
+    var arrayData: Array<String> = []
+    var arrayTotal: Array<String> = []
+    var lista: Array<Lista>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = false
-
+        
         tableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        for listaIndex in ListaManager.sharedInstance.buscarListas(){
+            print(listaIndex.nome)
+            //            ListaManager.sharedInstance.deleteAll()
+            
+            arrayLista.append(listaIndex.nome!)
+            arrayData.append("\(listaIndex.data!)")
+            for produtoIndex in ProdutoManager.sharedInstance.buscarProdutos(){
+                if produtoIndex.lista.nome == listaIndex.nome{
+                    let formatarNumero = ("\(produtoIndex.valor)").stringByReplacingOccurrencesOfString("Optional", withString: " ")
+                    let formatarNumer = (formatarNumero).stringByReplacingOccurrencesOfString("(", withString: " ")
+                    let formatarNum = (formatarNumer).stringByReplacingOccurrencesOfString(")", withString: " ")
+                    
+                    arrayTotal.append(formatarNum)
+                }
+            }
+        }
+    }
     
     override func viewWillDisappear(animated: Bool) {
         self.navigationController!.popToRootViewControllerAnimated(true)
-
+        
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        for i in ProdutoManager.sharedInstance.buscarProdutos(){
-            arrayLista.append(i.nome!)
-        }
         return arrayLista.count
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("celula", forIndexPath: indexPath) as! ListaDeGastosTableViewCell
         
-        for i in ProdutoManager.sharedInstance.buscarProdutos(){
-            arrayLista.append(i.nome!)
-            cell.nomeDaLista.text = arrayLista[indexPath.row]
-        }
+        cell.nomeDaLista.text = arrayLista[indexPath.row]
+        cell.totalDaLista.text = arrayTotal[indexPath.row]
+        cell.dataDaLista.text = arrayData[indexPath.row]
         
         return cell
     }
-
-
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    // Return false if you do not want the specified item to be editable.
+    return true
     }
     */
-
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            // Deletar lista
+            for list in ListaManager.sharedInstance.buscarListas(){
+                if list.nome == arrayLista[indexPath.row]{
+                    arrayLista.removeAtIndex(indexPath.row)
+                    ListaManager.sharedInstance.delete(list)
+                    ListaManager.sharedInstance.save()
+                }
+            }
+        }
+        
+        self.tableView.reloadData()
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+/*
+// Override to support rearranging the table view.
+override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
-    }
-    */
+}
+*/
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
+/*
+// Override to support conditional rearranging of the table view.
+override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+// Return false if you do not want the item to be re-orderable.
+return true
+}
+*/
 
-    /*
-    // MARK: - Navigation
+// MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+//override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//    
+//}
 
 }

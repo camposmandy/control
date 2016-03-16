@@ -16,6 +16,6 @@ extension Produtos {
 
     @NSManaged var valor: NSNumber?
     @NSManaged var nome: String?
-    @NSManaged var lista: NSManagedObject?
+    @NSManaged var lista: Lista
 
 }

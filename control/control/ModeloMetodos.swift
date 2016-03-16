@@ -9,7 +9,7 @@
 import UIKit
 
 class ModeloMetodos: NSObject {
-
+    
     func designBotao(preco: UILabel) {
         
         preco.shadowColor = UIColor.blackColor()
@@ -25,51 +25,7 @@ class ModeloMetodos: NSObject {
         preco.layer.masksToBounds = false
     }
     
-    func adicionarItemNaLista(var nomeItem: Array<String>, var valoresItens: Array<String>, var valoresIniciais: Array<String>, navigation: UINavigationController, view: UIViewController, tableView: UITableView){
-        
-        let alertaNovoItem = UIAlertController(title: nil, message: "", preferredStyle: .Alert)
-        var descricaoTxtField = UITextField()
-        var precoTxtField = UITextField()
-        
-        alertaNovoItem.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            descricaoTxtField = textField
-            textField.placeholder = "Nome do item"
-            textField.keyboardType = .Default
-        }
-        
-        alertaNovoItem.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            precoTxtField = textField
-            textField.placeholder = "Valor"
-            textField.keyboardType = .DecimalPad
-        }
-        
-        alertaNovoItem.view.layer.shadowColor = UIColor.blackColor().CGColor
-        alertaNovoItem.view.layer.shadowOffset = CGSizeZero
-        alertaNovoItem.view.layer.shadowOpacity = 1
-        
-        let cancelar = UIAlertAction(title: "Cancelar", style: .Cancel, handler: nil)
-        let salvar = UIAlertAction(title: "Salvar", style: .Default, handler: { (ACTION) -> Void in
-            
-            let formatarNumero = (precoTxtField.text)?.stringByReplacingOccurrencesOfString(",", withString: ".")
-            print(formatarNumero)
-            print(descricaoTxtField.text)
-            
-            nomeItem.append(descricaoTxtField.text!)
-            valoresItens.append(precoTxtField.text!)
-            valoresIniciais.append(precoTxtField.text!)
-            
-            navigation.popToViewController(view, animated: true)
-            
-            tableView.reloadData()
-        })
-        
-        alertaNovoItem.addAction(cancelar)
-        alertaNovoItem.addAction(salvar)
-        
-        view.presentViewController(alertaNovoItem, animated: true, completion: nil)
-    }
-    
-    func finalizarLista(navigation: UINavigationController, view: UIViewController, var arrayNomeLista: Array<String>){
+    func finalizarLista(navigation: UINavigationController, view: UIViewController, arrayNomeLista: Array<String>, lista: Lista, tipo: String){
         let alertaNovoLimite = UIAlertController(title: nil, message: "Digite um novo nome para sua comanda", preferredStyle: .Alert)
         var limiteTxtField = UITextField()
         
@@ -87,14 +43,22 @@ class ModeloMetodos: NSObject {
         let salvar = UIAlertAction(title: "Salvar", style: .Default, handler: { (ACTION) -> Void in
             
             //salvar no coreData e redirecionar para a lista
-            var lista: Lista!
+            let date = NSDate()
             
-            lista = ListaManager.sharedInstance.novaLista()
+            //            let dataEntrega = NSDateFormatter()
+            //            dataEntrega.dateFormat = "dd/MM/yyyy"
+            //            let dataString = dataEntrega.stringFromDate(date)
+            //            let dd = dataEntrega.dateFromString(dataString)
+            
+            //salva lista
             lista.nome = limiteTxtField.text
-            lista.produtos = NSSet(array: ProdutoManager.sharedInstance.buscarProdutos())
-            ListaManager.sharedInstance.save()
+            lista.data = date
             
-            arrayNomeLista.append(limiteTxtField.text!)
+            if tipo == "ilimitado"{
+                lista.limite = 0
+            }
+            
+            ListaManager.sharedInstance.save()
             
             navigation.popToViewController(view, animated: true)
             
@@ -110,9 +74,26 @@ class ModeloMetodos: NSObject {
     }
     
     func transferenciaDeDados(view: UIViewController, navigation: UINavigationController, arrayNomeLista: Array<String>){
-        //transferir dados dessa view para outra apos executar o AlertController
+        //transferir dados de uma view para outra apos executar o AlertController
         let secondViewController = view.storyboard!.instantiateViewControllerWithIdentifier("teste") as! ListaDeGastosTableViewController
         secondViewController.arrayLista = arrayNomeLista
         navigation.pushViewController(secondViewController, animated: true)
+    }
+    
+    func salvarDemaisItens(index: NSIndexPath, arrayNome: Array<String>, valor: Float){
+        //procura produto a ser incrementado.
+        for prod in ProdutoManager.sharedInstance.buscarProdutos(){
+            if prod.nome == arrayNome[index.row]{
+                //procura a lista que o produto pertence.
+                for list in ListaManager.sharedInstance.buscarListas(){
+                    //atualiza valor do produto.
+                    if list == prod.lista{
+                        prod.valor = valor
+                        ProdutoManager.sharedInstance.save()
+                        ListaManager.sharedInstance.save()
+                    }
+                }
+            }
+        }
     }
 }

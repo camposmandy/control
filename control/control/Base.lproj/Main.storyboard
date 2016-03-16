@@ -131,7 +131,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <segue destination="AtS-4N-kKM" kind="show" id="jg2-Ru-eF6"/>
+                                            <segue destination="AtS-4N-kKM" kind="show" identifier="listaDeGastos" id="jg2-Ru-eF6"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -151,33 +151,65 @@
             </objects>
             <point key="canvasLocation" x="1024" y="803"/>
         </scene>
-        <!--Lista De Gastos Table View Controller-->
+        <!--Lista de Gastos-->
         <scene sceneID="r9X-NM-4sM">
             <objects>
                 <tableViewController storyboardIdentifier="teste" id="AtS-4N-kKM" customClass="ListaDeGastosTableViewController" customModule="control" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6Gf-8w-ZEs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" id="6Gf-8w-ZEs">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="celula" id="hIv-QK-vuj" customClass="ListaDeGastosTableViewCell" customModule="control" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="celula" rowHeight="76" id="hIv-QK-vuj" customClass="ListaDeGastosTableViewCell" customModule="control" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="76"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hIv-QK-vuj" id="Oj0-aJ-zkZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="76"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome da lista" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjE-Uw-2b0">
-                                            <rect key="frame" x="8" y="11" width="105" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome da lista" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjE-Uw-2b0">
+                                            <rect key="frame" x="8" y="11" width="584" height="21"/>
+                                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dd/mm/aaaa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywy-CI-N9w">
+                                            <rect key="frame" x="8" y="40" width="111" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="KNy-Uv-jti"/>
+                                                <constraint firstAttribute="width" constant="111" id="LOB-Z1-8oA"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total gasto" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYY-T9-te6">
+                                            <rect key="frame" x="480" y="27" width="105" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="105" id="vZw-si-L2M"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
+                                            <color key="textColor" red="0.23137254900000001" green="0.49803921569999998" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="iYY-T9-te6" firstAttribute="top" secondItem="Oj0-aJ-zkZ" secondAttribute="topMargin" constant="19" id="MX2-Rh-ROs"/>
+                                        <constraint firstItem="ywy-CI-N9w" firstAttribute="top" secondItem="cjE-Uw-2b0" secondAttribute="bottom" constant="8" symbolic="YES" id="UGe-31-3Sl"/>
+                                        <constraint firstItem="cjE-Uw-2b0" firstAttribute="leading" secondItem="Oj0-aJ-zkZ" secondAttribute="leadingMargin" id="UYl-qZ-zmd"/>
+                                        <constraint firstItem="iYY-T9-te6" firstAttribute="centerY" secondItem="Oj0-aJ-zkZ" secondAttribute="centerY" id="aIZ-OR-eX3"/>
+                                        <constraint firstItem="cjE-Uw-2b0" firstAttribute="leading" secondItem="ywy-CI-N9w" secondAttribute="leading" id="cA4-LE-Kc4"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ywy-CI-N9w" secondAttribute="bottom" constant="7" id="cDU-HI-7ak"/>
+                                        <constraint firstItem="cjE-Uw-2b0" firstAttribute="trailing" secondItem="Oj0-aJ-zkZ" secondAttribute="trailingMargin" id="f42-8i-5hr"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="iYY-T9-te6" secondAttribute="trailing" constant="7" id="m0J-Ls-O7y"/>
+                                        <constraint firstItem="cjE-Uw-2b0" firstAttribute="top" secondItem="Oj0-aJ-zkZ" secondAttribute="topMargin" constant="3" id="ryi-Rt-kcy"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <outlet property="dataDaLista" destination="ywy-CI-N9w" id="Abg-mB-qpW"/>
                                     <outlet property="nomeDaLista" destination="cjE-Uw-2b0" id="IiD-yu-dnx"/>
+                                    <outlet property="totalDaLista" destination="iYY-T9-te6" id="lTx-VL-6wa"/>
                                     <segue destination="zVG-5M-HHX" kind="show" trigger="accessoryAction" id="2Wc-RU-5pa"/>
                                 </connections>
                             </tableViewCell>
@@ -187,12 +219,12 @@
                             <outlet property="delegate" destination="AtS-4N-kKM" id="vm0-Zo-d8e"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="DFo-sg-RCb"/>
+                    <navigationItem key="navigationItem" title="Lista de Gastos" id="DFo-sg-RCb"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u0o-zs-S6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1099" y="2365"/>
+            <point key="canvasLocation" x="1024" y="1585"/>
         </scene>
         <!--Orçamento Limitado-->
         <scene sceneID="ngX-0y-Jjj">
@@ -362,7 +394,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7j-UO-CQw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1386" y="1585"/>
+            <point key="canvasLocation" x="1695" y="1585"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="S79-ho-qac">
@@ -377,7 +409,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jjf-ip-jOV" id="sVe-Yr-Ev1">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
@@ -391,7 +423,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4EF-6v-Eia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1099" y="3000"/>
+            <point key="canvasLocation" x="1024" y="2329"/>
         </scene>
         <!--Limitar gastos-->
         <scene sceneID="Bil-wb-5cb">
@@ -524,6 +556,9 @@
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B9h-Xn-Gei">
                                 <rect key="frame" x="0.0" y="489" width="600" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="NlC-0r-n5c"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem title="Adicionar Item" id="DIu-wp-cjT">
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -550,6 +585,8 @@
                             <constraint firstItem="YTO-wH-zuP" firstAttribute="leading" secondItem="Aii-cM-bNL" secondAttribute="leadingMargin" id="EG5-9z-pmU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tvx-YV-alL" secondAttribute="trailing" constant="-20" id="HSp-y3-iH5"/>
                             <constraint firstItem="JsS-bv-csZ" firstAttribute="centerX" secondItem="6hm-vE-sDx" secondAttribute="centerX" id="LJN-dL-Xn9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="B9h-Xn-Gei" secondAttribute="trailing" constant="-20" id="Lan-qp-bla"/>
+                            <constraint firstItem="B9h-Xn-Gei" firstAttribute="leading" secondItem="Aii-cM-bNL" secondAttribute="leadingMargin" constant="-20" id="N3g-Ld-qm2"/>
                             <constraint firstItem="O6j-D6-wNl" firstAttribute="centerX" secondItem="YTO-wH-zuP" secondAttribute="centerX" id="NQt-dC-TH6"/>
                             <constraint firstItem="O6j-D6-wNl" firstAttribute="leading" secondItem="Aii-cM-bNL" secondAttribute="leading" id="OwM-qs-zu6"/>
                             <constraint firstItem="B9h-Xn-Gei" firstAttribute="leading" secondItem="O6j-D6-wNl" secondAttribute="leading" id="Pla-RN-M3f"/>
@@ -566,7 +603,10 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="4tX-dg-nHX"/>
                                 <exclude reference="7He-bT-YPa"/>
+                                <exclude reference="Pla-RN-M3f"/>
+                                <exclude reference="oeV-hd-GSy"/>
                             </mask>
                         </variation>
                     </view>
@@ -579,7 +619,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cwo-mD-TH3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="746" y="1585"/>
+            <point key="canvasLocation" x="353" y="1585"/>
         </scene>
     </scenes>
     <resources>
