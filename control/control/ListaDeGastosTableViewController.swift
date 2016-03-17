@@ -13,12 +13,13 @@ class ListaDeGastosTableViewController: UITableViewController {
     var arrayLista: Array<String> = []
     var arrayData: Array<String> = []
     var arrayTotal: Array<String> = []
-    var lista: Array<Lista>!
+    var listas: [Lista] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = false
         
+        listas = ListaManager.sharedInstance.buscarListas()
         tableView.reloadData()
     }
     
@@ -68,15 +69,16 @@ class ListaDeGastosTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayLista.count
+        return listas.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("celula", forIndexPath: indexPath) as! ListaDeGastosTableViewCell
-        
-        cell.nomeDaLista.text = arrayLista[indexPath.row]
+
+        cell.nomeDaLista.text = listas[indexPath.row].nome
         cell.totalDaLista.text = arrayTotal[indexPath.row]
-        cell.dataDaLista.text = arrayData[indexPath.row]
+        cell.dataDaLista.text = "\(listas[indexPath.row].data)"
+        
         
         return cell
     }
@@ -124,8 +126,18 @@ return true
 // MARK: - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-//override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    
-//}
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    if segue.identifier == "dadosLista" {
+        let destino = segue.destinationViewController as! DetalhesListaViewController
+        let cell = sender as! UITableViewCell
+        let indexPath = self.tableView.indexPathForCell(cell)
+        let objeto = listas[(indexPath?.row)!]
+        destino.lista = objeto
+        destino.indice = indexPath?.row
+    }
+    
+    
+}
 
 }

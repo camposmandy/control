@@ -28,6 +28,8 @@
 		4B3F61461C98950D008BB972 /* Lista.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F61421C98950D008BB972 /* Lista.swift */; };
 		4B3F61491C989A59008BB972 /* ListaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F61481C989A59008BB972 /* ListaManager.swift */; };
 		4B3F614B1C989A6D008BB972 /* ProdutoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F614A1C989A6D008BB972 /* ProdutoManager.swift */; };
+		4B3F614D1C9B3AA4008BB972 /* DetalheListaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F614C1C9B3AA4008BB972 /* DetalheListaTableViewCell.swift */; };
+		4B3F614F1C9B3B3C008BB972 /* DetalhesListaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F614E1C9B3B3C008BB972 /* DetalhesListaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		4B3F61421C98950D008BB972 /* Lista.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lista.swift; sourceTree = "<group>"; };
 		4B3F61481C989A59008BB972 /* ListaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaManager.swift; sourceTree = "<group>"; };
 		4B3F614A1C989A6D008BB972 /* ProdutoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProdutoManager.swift; sourceTree = "<group>"; };
+		4B3F614C1C9B3AA4008BB972 /* DetalheListaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalheListaTableViewCell.swift; sourceTree = "<group>"; };
+		4B3F614E1C9B3B3C008BB972 /* DetalhesListaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalhesListaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 				3733F9D51C70DE2600E03CE6 /* PrecoFixoDetalhesTableViewCell.swift */,
 				37CB44781C93AE9200316803 /* PrecoIlimitadoTableViewCell.swift */,
 				377361711C9782D9007236BF /* ListaDeGastosTableViewCell.swift */,
+				4B3F614C1C9B3AA4008BB972 /* DetalheListaTableViewCell.swift */,
 			);
 			name = celulas;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 				3773614C1C973F7D007236BF /* ViewInicialTableViewController.swift */,
 				375874741C9725DD0055C166 /* PrecoFixoTableViewController.swift */,
 				37CB44761C93AE5400316803 /* PrecoIlimitadoViewController.swift */,
+				4B3F614E1C9B3B3C008BB972 /* DetalhesListaViewController.swift */,
 				377361731C9782FA007236BF /* ListaDeGastosTableViewController.swift */,
 				37E08BE21C63BBD500369E84 /* Main.storyboard */,
 				37E08BE51C63BBD500369E84 /* Assets.xcassets */,
@@ -318,8 +324,10 @@
 				4B3F61461C98950D008BB972 /* Lista.swift in Sources */,
 				377361741C9782FA007236BF /* ListaDeGastosTableViewController.swift in Sources */,
 				377361721C9782D9007236BF /* ListaDeGastosTableViewCell.swift in Sources */,
+				4B3F614F1C9B3B3C008BB972 /* DetalhesListaViewController.swift in Sources */,
 				37CB44791C93AE9200316803 /* PrecoIlimitadoTableViewCell.swift in Sources */,
 				4B3F614B1C989A6D008BB972 /* ProdutoManager.swift in Sources */,
+				4B3F614D1C9B3AA4008BB972 /* DetalheListaTableViewCell.swift in Sources */,
 				3773614D1C973F7D007236BF /* ViewInicialTableViewController.swift in Sources */,
 				37E08BDF1C63BBD500369E84 /* AppDelegate.swift in Sources */,
 				4B3F613E1C989423008BB972 /* control.xcdatamodeld in Sources */,

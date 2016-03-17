@@ -11,7 +11,7 @@ import UIKit
 class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let mm = ModeloMetodos()
-    var lista : Lista!
+    var lista: Lista!
     var arrayNomeLista: Array<String> = []
     var produto : Produtos!
     var produtos:[Produtos] = []
