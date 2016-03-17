@@ -14,7 +14,7 @@ class ListaDeGastosTableViewController: UITableViewController {
     var arrayData: Array<String> = []
     var arrayTotal: Array<String> = []
     var lista: Array<Lista>!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = false
@@ -29,19 +29,28 @@ class ListaDeGastosTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         for listaIndex in ListaManager.sharedInstance.buscarListas(){
+            var soma: Double = 0
             print(listaIndex.nome)
-            //            ListaManager.sharedInstance.deleteAll()
             
-            arrayLista.append(listaIndex.nome!)
-            arrayData.append("\(listaIndex.data!)")
-            for produtoIndex in ProdutoManager.sharedInstance.buscarProdutos(){
-                if produtoIndex.lista.nome == listaIndex.nome{
-                    let formatarNumero = ("\(produtoIndex.valor)").stringByReplacingOccurrencesOfString("Optional", withString: " ")
-                    let formatarNumer = (formatarNumero).stringByReplacingOccurrencesOfString("(", withString: " ")
-                    let formatarNum = (formatarNumer).stringByReplacingOccurrencesOfString(")", withString: " ")
-                    
-                    arrayTotal.append(formatarNum)
+            if  listaIndex.nome == nil {
+                ListaManager.sharedInstance.delete(listaIndex)
+                ListaManager.sharedInstance.save()
+            } else {
+                
+                arrayLista.append(listaIndex.nome!)
+                arrayData.append("\(listaIndex.data!)")
+                for produtoIndex in ProdutoManager.sharedInstance.buscarProdutos(){
+                    if produtoIndex.lista!.nome == listaIndex.nome{
+                        let formatarNumero = ("\(produtoIndex.valor)").stringByReplacingOccurrencesOfString("Optional", withString: " ")
+                        let formatarNumer = (formatarNumero).stringByReplacingOccurrencesOfString("(", withString: " ")
+                        let formatarNum = (formatarNumer).stringByReplacingOccurrencesOfString(")", withString: " ")
+                        
+                        print("valor: ", formatarNum)
+                        soma = soma + Double(produtoIndex.valor!)
+                        print(soma)
+                    }
                 }
+                arrayTotal.append("\(soma)")
             }
         }
     }

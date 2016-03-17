@@ -2,7 +2,7 @@
 //  Produtos+CoreDataProperties.swift
 //  control
 //
-//  Created by Mariana Medeiro on 15/03/16.
+//  Created by Amanda Campos on 17/03/16.
 //  Copyright © 2016 Amanda Campos. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,8 +14,9 @@ import CoreData
 
 extension Produtos {
 
-    @NSManaged var valor: NSNumber?
     @NSManaged var nome: String?
-    @NSManaged var lista: Lista
+    @NSManaged var valor: NSNumber?
+    @NSManaged var quantidade: NSNumber?
+    @NSManaged var lista: Lista?
 
 }

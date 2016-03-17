@@ -396,6 +396,24 @@
             </objects>
             <point key="canvasLocation" x="1695" y="1585"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="NF7-JU-UD2">
+            <objects>
+                <viewController id="PKa-pO-O07" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gyD-jE-oQ4"/>
+                        <viewControllerLayoutGuide type="bottom" id="ush-D2-EbO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uom-2H-rg9">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Pw-1X-kDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1695" y="2329"/>
+        </scene>
         <!--Table View Controller-->
         <scene sceneID="S79-ho-qac">
             <objects>
@@ -413,6 +431,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.1333333333" green="0.19215686269999999" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="PKa-pO-O07" kind="show" id="UnN-tP-oun"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

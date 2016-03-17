@@ -70,7 +70,6 @@ class ListaManager {
         return Array<Lista>()
     }
     
-    
     func save(){
         do{
             try manegedContext.save()
@@ -83,6 +82,7 @@ class ListaManager {
     
     func delete(lista: Lista){
             manegedContext.deleteObject(lista)
+            save()
             print("deletou Lista")
     }
     
@@ -98,7 +98,6 @@ class ListaManager {
                 for message in results {
                     
                     manegedContext.deleteObject(message)
-                    try manegedContext.save()
                     print(message)
                 }
             }

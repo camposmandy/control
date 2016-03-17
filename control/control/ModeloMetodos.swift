@@ -59,7 +59,7 @@ class ModeloMetodos: NSObject {
             }
             
             ListaManager.sharedInstance.save()
-            
+                        
             navigation.popToViewController(view, animated: true)
             
             if limiteTxtField.text != "Nome da comanda"{
@@ -80,20 +80,9 @@ class ModeloMetodos: NSObject {
         navigation.pushViewController(secondViewController, animated: true)
     }
     
-    func salvarDemaisItens(index: NSIndexPath, arrayNome: Array<String>, valor: Float){
-        //procura produto a ser incrementado.
-        for prod in ProdutoManager.sharedInstance.buscarProdutos(){
-            if prod.nome == arrayNome[index.row]{
-                //procura a lista que o produto pertence.
-                for list in ListaManager.sharedInstance.buscarListas(){
-                    //atualiza valor do produto.
-                    if list == prod.lista{
-                        prod.valor = valor
-                        ProdutoManager.sharedInstance.save()
-                        ListaManager.sharedInstance.save()
-                    }
-                }
-            }
-        }
+    func salvarDemaisItens(index: NSIndexPath, arrayNome: Array<String>, valor: Float, lista: Lista!){
+        
+        //lista -> arrayProd -> procurar o produto -> atualizar valor
+            
     }
 }

@@ -12,14 +12,9 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     
     let mm = ModeloMetodos()
     var lista : Lista!
-    
-    var arrayValores: Array<String> = []
-    var arrayNomeItem: Array<String> = []
-    var arrayValorInicial: Array<String> = []
     var arrayNomeLista: Array<String> = []
-    
     var produto : Produtos!
-    
+    var produtos:[Produtos] = []
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalDaComanda: UILabel!
@@ -32,7 +27,12 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
         
         finalizarCompras.enabled = false
         
+        self.lista = ListaManager.sharedInstance.novaLista()
+        //inicializa lista
+        self.lista.nome = nil
+
         mm.designBotao(totalDaComanda)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -49,16 +49,16 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayNomeItem.count
+        return produtos.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell  = tableView.dequeueReusableCellWithIdentifier("celula", forIndexPath: indexPath) as! PrecoIlimitadoTableViewCell
         
-        cell.nomeItemIlimitado.text = arrayNomeItem[indexPath.row]
-        cell.precoItemIlimitado.text = arrayValores[indexPath.row]
+        cell.nomeItemIlimitado.text = produtos[indexPath.row].nome
+        cell.precoItemIlimitado.text = "\(produtos[indexPath.row].valor)"
         
-        incrementar()
+        self.incrementar()
         
         if totalDaComanda.text != "R$"{
             finalizarCompras.enabled = true
@@ -71,27 +71,16 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
         let maisUm = UITableViewRowAction(style: .Normal, title: "+1") { (action, index) -> Void in
             tableView.editing = false
             
-            let valorInicial = self.arrayValorInicial.map{Float($0) ?? 0}
-            let k = self.arrayValores.map{Float($0) ?? 0}
+            var valor = self.produtos[indexPath.row].valor
+            var quantidade = self.produtos[indexPath.row].quantidade
             
-            var valorInicialINDEX = valorInicial[indexPath.row]
-            let j = valorInicialINDEX/k[indexPath.row]
             
-            if valorInicial[indexPath.row] != j * valorInicial[indexPath.row]{
-                //demais incrementos
-                
-                valorInicialINDEX = (valorInicialINDEX + k[indexPath.row])
-                self.mm.salvarDemaisItens(indexPath, arrayNome: self.arrayNomeItem, valor: valorInicialINDEX)
-                
-            } else {
-                //primeiro incremento
-                
-                valorInicialINDEX += valorInicialINDEX
-                self.mm.salvarDemaisItens(indexPath, arrayNome: self.arrayNomeItem, valor: valorInicialINDEX)
-            }
-            
-            self.arrayValores.insert("\(valorInicialINDEX)", atIndex: index.row)
-            self.arrayValores.removeAtIndex(index.row + 1)
+            valor = Double(valor!) / Double(quantidade!)
+            quantidade = Double(quantidade!) + 1
+            valor = Double(valor!) * Double(quantidade!)
+
+            self.produtos[indexPath.row].valor = valor
+            ProdutoManager.sharedInstance.save()
             
             self.tableView.reloadData()
         }
@@ -129,22 +118,18 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
             print(formatarNumero)
             print(descricaoTxtField.text)
             
-            //inicializa lista
-            self.lista = ListaManager.sharedInstance.novaLista()
-            self.lista.nome = "comanda"
             
             //salva apenas o primeiro produto
             self.produto = ProdutoManager.sharedInstance.novoProduto()
             
             self.produto.nome = descricaoTxtField.text
             self.produto.valor = Double(precoTxtField.text!)
+            self.produto.quantidade = 1
             self.produto.lista = self.lista
             
             ProdutoManager.sharedInstance.save()
             
-            self.arrayNomeItem.append(descricaoTxtField.text!)
-            self.arrayValores.append(precoTxtField.text!)
-            self.arrayValorInicial.append(precoTxtField.text!)
+            self.produtos.append(self.produto)
             
             self.navigationController?.popToViewController(self, animated: true)
             
@@ -162,16 +147,13 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func incrementar(){
-        var f = Float()
-        var b = self.arrayValores.map{Float($0) ?? 0}
-        
-        for index in arrayValores{
-            let c=b[arrayValores.indexOf(index)!]
-            f = c+f
-            
+
+        var soma: Double = 0
+        for i in produtos{
+            soma = soma + Double(i.valor!)
         }
-        
-        totalDaComanda.text = "\(f)"
+
+        totalDaComanda.text = "\(soma)"
     }
     
     

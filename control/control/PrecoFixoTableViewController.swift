@@ -13,11 +13,8 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
     var lista: Lista!
     var produto: Produtos!
     var mm = ModeloMetodos()
-    
+    var produtos:[Produtos] = []
     var precoFake = String()
-    var arrayItens: Array<String> = []
-    var arrayValores: Array<String> = []
-    var arrayValoresInicial: Array<String> = []
     var arrayNomeLista: Array<String> = []
 
     @IBOutlet weak var nomeDaComanda: UILabel!
@@ -26,7 +23,6 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
     @IBOutlet weak var buttonAddItem: UIBarButtonItem!
     @IBOutlet weak var buttonFinalizarItem: UIBarButtonItem!
     
-   // @IBOutlet weak var viewBackGroudLimite: UIView!
     
     @IBAction func adcItem(sender: AnyObject) {
         
@@ -57,21 +53,17 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
             print(formatarNumero)
             print(descricaoTxtField.text)
             
-            self.lista = ListaManager.sharedInstance.novaLista()
-            self.lista.nome = "comanda"
-            self.lista.limite = Double(self.precoFake)
             
             self.produto = ProdutoManager.sharedInstance.novoProduto()
             
             self.produto.nome = descricaoTxtField.text
             self.produto.valor = Double(precoTxtField.text!)
+            self.produto.quantidade = 1
             self.produto.lista = self.lista
             
             ProdutoManager.sharedInstance.save()
             
-            self.arrayItens.append(descricaoTxtField.text!)
-            self.arrayValores.append(precoTxtField.text!)
-            self.arrayValoresInicial.append(precoTxtField.text!)
+            self.produtos.append(self.produto)
             
             self.navigationController?.popToViewController(self, animated: true)
             
@@ -97,6 +89,9 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
         buttonFinalizarItem.enabled = false
         buttonAddItem.enabled = false
         
+        self.lista = ListaManager.sharedInstance.novaLista()
+        self.lista.nome = nil
+
         mm.designBotao(precoEscolhido)
     }
 
@@ -113,13 +108,13 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
     // MARK: - Table view data source
      func numberOfSectionsInTableView(tableView: UITableView) -> Int { return 1 }
 
-     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return self.arrayItens.count }
+     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return produtos.count }
 
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: PrecoFixoDetalhesTableViewCell = tableView.dequeueReusableCellWithIdentifier("celula", forIndexPath: indexPath) as! PrecoFixoDetalhesTableViewCell
 
-        cell.descricaoLabel.text = self.arrayItens[indexPath.row]
-        cell.precoLabel.text = self.arrayValores[indexPath.row]
+        cell.descricaoLabel.text = produtos[indexPath.row].nome
+        cell.precoLabel.text = "\(produtos[indexPath.row].valor)"
         
         decrementar()
         
@@ -163,6 +158,8 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
                 self.decrementar()
             }
             
+            self.lista.limite = Double(self.precoFake)
+
             self.navigationController?.popToViewController(self, animated: true)
         })
         
@@ -173,27 +170,19 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        
         let maisUm = UITableViewRowAction(style: .Normal, title: "+1") { (action, index) -> Void in
             tableView.editing = false
-            
-            let v = self.arrayValoresInicial.map{Float($0) ?? 0}
-            let k = self.arrayValores.map{Float($0) ?? 0}
-            
-            var x = v[indexPath.row]
-            let j = x/k[indexPath.row]
-            
-            if v[indexPath.row] != j * v[indexPath.row]{
-            x = (x + k[indexPath.row])
-            self.mm.salvarDemaisItens(indexPath, arrayNome: self.arrayItens, valor: x)
-            } else {
-                x += x
-            self.mm.salvarDemaisItens(indexPath, arrayNome: self.arrayItens, valor: x)
-            }
-            
-            self.arrayValores.insert("\(x)", atIndex: index.row)
-            self.arrayValores.removeAtIndex(index.row + 1)
-            
+
+        var valor = self.produtos[indexPath.row].valor
+        var quantidade = self.produtos[indexPath.row].quantidade
+        
+        valor = Double(valor!) / Double(quantidade!)
+        quantidade = Double(quantidade!) + 1
+        valor = Double(valor!) * Double(quantidade!)
+        
+        self.produtos[indexPath.row].valor = valor
+        ProdutoManager.sharedInstance.save()
+        
             self.tableView.reloadData()
         }
         
@@ -205,16 +194,14 @@ class PrecoFixoTableViewController: UIViewController,UITableViewDelegate, UITabl
     @IBAction func finalizar(sender: AnyObject) { mm.finalizarLista(navigationController!, view: self, arrayNomeLista: arrayNomeLista, lista: self.lista, tipo: "limitado") }
     
     func decrementar(){
-        var a = Float(self.precoFake)!
         
-        var b = self.arrayValores.map{Float($0) ?? 0}
-        
-        for j in arrayValores{
-            let c = b[arrayValores.indexOf(j)!]
-            a = a - c
+        let valorInicial = Double(precoFake)
+        var valorInicialAlterado = valorInicial
+        for i in produtos{
+            valorInicialAlterado = valorInicialAlterado! - Double(i.valor!)
         }
         
-        precoEscolhido.text = "\(a)"
+        precoEscolhido.text = "\(valorInicialAlterado)"
     }
 
     // MARK: - Navigation
