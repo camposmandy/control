@@ -34,6 +34,8 @@
 		4B004C421C9C4B4C002610C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B004C411C9C4B4C002610C5 /* Assets.xcassets */; };
 		4B004C461C9C4B4C002610C5 /* Control-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4B004C241C9C4B4C002610C5 /* Control-Watch.app */; };
 		4B004C501C9C7911002610C5 /* DefinirLimiteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B004C4F1C9C7911002610C5 /* DefinirLimiteController.swift */; };
+		4B004C521C9C91EB002610C5 /* NumberPadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B004C511C9C91EB002610C5 /* NumberPadController.swift */; };
+		4B004C541C9C9988002610C5 /* PrecoFixoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B004C531C9C9988002610C5 /* PrecoFixoController.swift */; };
 		4B3F613E1C989423008BB972 /* control.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F613C1C989423008BB972 /* control.xcdatamodeld */; };
 		4B3F61451C98950D008BB972 /* Lista+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F61411C98950D008BB972 /* Lista+CoreDataProperties.swift */; };
 		4B3F61461C98950D008BB972 /* Lista.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3F61421C98950D008BB972 /* Lista.swift */; };
@@ -136,6 +138,8 @@
 		4B004C411C9C4B4C002610C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B004C431C9C4B4C002610C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B004C4F1C9C7911002610C5 /* DefinirLimiteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefinirLimiteController.swift; sourceTree = "<group>"; };
+		4B004C511C9C91EB002610C5 /* NumberPadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberPadController.swift; sourceTree = "<group>"; };
+		4B004C531C9C9988002610C5 /* PrecoFixoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrecoFixoController.swift; sourceTree = "<group>"; };
 		4B3F613D1C989423008BB972 /* control.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = control.xcdatamodel; sourceTree = "<group>"; };
 		4B3F61411C98950D008BB972 /* Lista+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Lista+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4B3F61421C98950D008BB972 /* Lista.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lista.swift; sourceTree = "<group>"; };
@@ -269,6 +273,8 @@
 				4B004C3B1C9C4B4C002610C5 /* NotificationController.swift */,
 				4B004C3D1C9C4B4C002610C5 /* GlanceController.swift */,
 				4B004C3F1C9C4B4C002610C5 /* ComplicationController.swift */,
+				4B004C511C9C91EB002610C5 /* NumberPadController.swift */,
+				4B004C531C9C9988002610C5 /* PrecoFixoController.swift */,
 				4B004C411C9C4B4C002610C5 /* Assets.xcassets */,
 				4B004C431C9C4B4C002610C5 /* Info.plist */,
 				4B004C351C9C4B4C002610C5 /* Supporting Files */,
@@ -539,6 +545,8 @@
 				4B004C401C9C4B4C002610C5 /* ComplicationController.swift in Sources */,
 				4B004C381C9C4B4C002610C5 /* InicialController.swift in Sources */,
 				4B004C3E1C9C4B4C002610C5 /* GlanceController.swift in Sources */,
+				4B004C521C9C91EB002610C5 /* NumberPadController.swift in Sources */,
+				4B004C541C9C9988002610C5 /* PrecoFixoController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
