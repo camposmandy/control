@@ -10,6 +10,8 @@ import UIKit
 
 class ModeloMetodos: NSObject {
     
+    //bugou
+    
     func designBotao(preco: UILabel) {
         
         preco.shadowColor = UIColor.blackColor()
