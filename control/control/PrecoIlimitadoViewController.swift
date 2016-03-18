@@ -27,18 +27,20 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
         
         finalizarCompras.enabled = false
         
-        self.lista = ListaManager.sharedInstance.novaLista()
         //inicializa lista
+        self.lista = ListaManager.sharedInstance.novaLista()
         self.lista.nome = nil
-
+        
         mm.designBotao(totalDaComanda)
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-    self.tabBarController?.tabBar.hidden = true
+    override func viewWillAppear(animated: Bool) { self.tabBarController?.tabBar.hidden = true }
+    
+    override func viewWillDisappear(animated: Bool) {
+        //caso o usuário sai da lista -> deve-se fazer um alerta para avisa-lo
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,8 +57,10 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell  = tableView.dequeueReusableCellWithIdentifier("celula", forIndexPath: indexPath) as! PrecoIlimitadoTableViewCell
         
-        cell.nomeItemIlimitado.text = produtos[indexPath.row].nome
-        cell.precoItemIlimitado.text = "\(produtos[indexPath.row].valor)"
+        cell.nomeItemIlimitado.text = produtos[indexPath.row].nome?.capitalizedString
+        if let numFormatado = produtos[indexPath.row].valor{
+            cell.precoItemIlimitado.text  = "\(numFormatado)"
+        }
         
         self.incrementar()
         
@@ -78,8 +82,9 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
             valor = Double(valor!) / Double(quantidade!)
             quantidade = Double(quantidade!) + 1
             valor = Double(valor!) * Double(quantidade!)
-
+            
             self.produtos[indexPath.row].valor = valor
+            self.produtos[indexPath.row].quantidade = quantidade
             ProdutoManager.sharedInstance.save()
             
             self.tableView.reloadData()
@@ -88,6 +93,17 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
         maisUm.backgroundColor = UIColor(colorLiteralRed: 91/255, green: 59/255, blue: 128/255, alpha: 1)
         
         return [maisUm]
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Deletar produto
+            //            let produt = produtos[indexPath.row]
+            //            arrayNomeLista.removeAtIndex(indexPath.row)
+            //            produtos.removeAtIndex(indexPath.row)
+            //            ProdutoManager.sharedInstance.delete(produt)
+            //            ProdutoManager.sharedInstance.save()
+        }
     }
     
     @IBAction func adcItem(sender: AnyObject) {
@@ -123,7 +139,9 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
             self.produto = ProdutoManager.sharedInstance.novoProduto()
             
             self.produto.nome = descricaoTxtField.text
-            self.produto.valor = Double(precoTxtField.text!)
+            if let numFormatado = formatarNumero{
+                self.produto.valor = Double(numFormatado)
+            }
             self.produto.quantidade = 1
             self.produto.lista = self.lista
             
@@ -147,21 +165,10 @@ class PrecoIlimitadoViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func incrementar(){
-
         var soma: Double = 0
         for i in produtos{
             soma = soma + Double(i.valor!)
         }
-
         totalDaComanda.text = "\(soma)"
     }
-    
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        }
-//    }
-    
 }
